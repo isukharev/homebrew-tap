@@ -7,33 +7,34 @@
 class Atl < Formula
   desc "Git-style CLI for Confluence & Jira, built for coding agents"
   homepage "https://github.com/isukharev/atl"
-  version "0.4.0"
+  version "0.5.0"
   license "Apache-2.0"
 
   on_macos do
     on_arm do
-      url "https://github.com/isukharev/atl/releases/download/v0.4.0/atl-darwin-arm64"
-      sha256 "370cbe8ba7f8b895ee702107e8a1e61e5175adbf0a6ddbbb3ae0f428ad06c356"
+      url "https://github.com/isukharev/atl/releases/download/v0.5.0/atl-darwin-arm64"
+      sha256 "a522e7cd6d0f09106212067e3abed8b23947fee981770405611ee362442a1c7b"
     end
     on_intel do
-      url "https://github.com/isukharev/atl/releases/download/v0.4.0/atl-darwin-amd64"
-      sha256 "2b0c4731a7717a18e76286c6551bce354cdbc1e7f9ada15fe47ffac1d2df6ffb"
+      url "https://github.com/isukharev/atl/releases/download/v0.5.0/atl-darwin-amd64"
+      sha256 "9f142e7d214db20677610783255cdbcbda8bb5a054d4610254a192ddae19f351"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/isukharev/atl/releases/download/v0.4.0/atl-linux-arm64"
-      sha256 "3e103809eed369166ba56b6ab612462e0c0e3ebdafe19dc05fa59fb561e8ee11"
+      url "https://github.com/isukharev/atl/releases/download/v0.5.0/atl-linux-arm64"
+      sha256 "bb665389b2f0dacf75f92966ce84c3f112af011edef6cbcefc1e3df50fc07bc0"
     end
     on_intel do
-      url "https://github.com/isukharev/atl/releases/download/v0.4.0/atl-linux-amd64"
-      sha256 "ddb9ed9b54ff53a7a9a5a051329c8eaa0f3d5c54dc1b08271d7a413b496b57d6"
+      url "https://github.com/isukharev/atl/releases/download/v0.5.0/atl-linux-amd64"
+      sha256 "9e5aea8d90516bff27d8e71359b49d64ae0f1637c575c514e45582b3be916feb"
     end
   end
 
   def install
-    bin.install Dir["atl-*"].first => "atl"
+    libexec.install Dir["atl-*"].first => "atl"
+    (bin/"atl").write_env_script libexec/"atl", ATL_NO_UPDATE: "1"
   end
 
   test do
